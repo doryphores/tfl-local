@@ -13,7 +13,6 @@ export default {
   fonts: {
     body: '"Avenir Next", Helvetica, Arial, sans-serif',
     heading: '"Avenir Next", Helvetica, Arial, sans-serif',
-    monospace: 'Menlo, monospace',
   },
   fontSizes: [
     12,
@@ -29,7 +28,7 @@ export default {
   fontWeights: {
     body: 400,
     heading: 500,
-    bold: 600,
+    badge: 600,
   },
   lineHeights: {
     body: 1.5,
@@ -38,9 +37,7 @@ export default {
   colors: {
     text: '#000',
     background: '#fff',
-    primary: '#07c',
-    secondary: '#30c',
-    muted: '#f6f6f6',
+    muted: '#ccc',
   },
   badges: {
     bus: {
@@ -65,49 +62,6 @@ export default {
       fontFamily: 'body',
       lineHeight: 'body',
       fontWeight: 'body',
-    },
-    h1: {
-      color: 'text',
-      fontFamily: 'heading',
-      lineHeight: 'heading',
-      fontWeight: 'heading',
-      fontSize: 5,
-      mb: 3,
-    },
-    h2: {
-      color: 'text',
-      fontFamily: 'heading',
-      lineHeight: 'heading',
-      fontWeight: 'heading',
-      fontSize: 4,
-    },
-    h3: {
-      color: 'text',
-      fontFamily: 'heading',
-      lineHeight: 'heading',
-      fontWeight: 'heading',
-      fontSize: 3,
-    },
-    h4: {
-      color: 'text',
-      fontFamily: 'heading',
-      lineHeight: 'heading',
-      fontWeight: 'heading',
-      fontSize: 2,
-    },
-    h5: {
-      color: 'text',
-      fontFamily: 'heading',
-      lineHeight: 'heading',
-      fontWeight: 'heading',
-      fontSize: 1,
-    },
-    h6: {
-      color: 'text',
-      fontFamily: 'heading',
-      lineHeight: 'heading',
-      fontWeight: 'heading',
-      fontSize: 0,
     },
   },
 };

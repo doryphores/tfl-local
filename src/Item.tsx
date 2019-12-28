@@ -11,13 +11,24 @@ interface Props {
 };
 
 const Item: React.FC<Props> = ({ variant, name, direction, time }) => (
-  <li sx={{display: 'flex'}}>
+  <li sx={{
+    display: 'flex',
+    '& + &': {
+      pt: 2,
+      mt: 2,
+      borderTopColor: 'muted',
+      borderTopStyle: 'solid',
+      borderTopWidth: '1px',
+    }
+  }}>
     <Badge
       variant={variant}
       sx={{
         fontSize: 2,
+        fontWeight: 'badge',
         px: 2,
         py: 1,
+        borderRadius: '3px',
       }}>
       {name}
     </Badge>
