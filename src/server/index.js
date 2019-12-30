@@ -31,5 +31,6 @@ const wss = new WebSocket.Server({ port: 8080 });
 Object.entries(STOPS).forEach((entry) => updateStop(...entry));
 
 wss.on('connection', function connection(ws) {
+  ws.send(JSON.stringify(CACHE));
   console.log('Connected!');
 });
