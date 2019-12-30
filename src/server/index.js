@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const WebSocket = require('ws');
-const { fetchTrainDepartures, fetchBusDepartures } = require('./transport_api');
+const { fetchTrainDepartures, fetchBusDepartures } = require('./api');
 const STOPS = require('./stops');
 
 const CACHE = {};
