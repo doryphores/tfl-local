@@ -1,4 +1,26 @@
 {
-  "train": ["NWD"],
-  "bus": ["490010422W", "490010422E", "490004247N", "490004247S"]
+  "train": [
+    {
+      "station": "NWD",
+      "minutesToStation": 15
+    }
+  ],
+  "bus": [
+    {
+      "stop": "490010422W",
+      "minutesToStop": 5
+    },
+    {
+      "stop": "490010422E",
+      "minutesToStop": 5
+    },
+    {
+      "stop": "490004247N",
+      "minutesToStop": 5
+    },
+    {
+      "stop": "490004247S",
+      "minutesToStop": 5
+    }
+  ]
 }
