@@ -55,7 +55,7 @@ async function fetchBusStopDepartures({ stop, minutesToStop }) {
     .map((d) => ({
       id: d['id'],
       line: d['lineName'],
-      destination: d['destinationName'],
+      destination: `${d['towards']} ➤ ${d['destinationName']}`,
       time: new Date(d['expectedArrival']),
     }))
     .filter((d) => differenceInMinutes(d.time, now) >= minutesToStop);
