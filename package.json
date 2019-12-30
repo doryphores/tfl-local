@@ -14,6 +14,7 @@
     "@types/theme-ui__components": "^0.2.0",
     "date-fns": "^2.8.1",
     "dotenv": "^8.2.0",
+    "forever": "^1.0.0",
     "national-rail-darwin": "^1.0.8",
     "node-fetch": "^2.6.0",
     "prettier": "^1.19.1",
@@ -27,7 +28,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "server": "node src/server",
+    "server": "forever -w --watchDirectory ./src/server src/server",
     "storybook": "start-storybook"
   },
   "eslintConfig": {
