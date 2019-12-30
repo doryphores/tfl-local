@@ -4,6 +4,7 @@ import { jsx, Styled } from 'theme-ui';
 import { ThemeProvider } from 'theme-ui';
 import { Flex } from '@theme-ui/components';
 
+import { connect } from './socket';
 import theme from './theme';
 import GlobalStyles from './GlobalStyles';
 import Item, { Props as ItemProps } from './Item';
@@ -18,12 +19,7 @@ interface Departure {
 
 const App: React.FC = () => {
   const [departures, setDepartures] = useState({ bus: [], train: [] });
-  useEffect(() => {
-    const webSocket = new WebSocket('ws://localhost:8080');
-    webSocket.onmessage = (event) => {
-      setDepartures(JSON.parse(event.data));
-    };
-  }, []);
+  useEffect(() => connect(setDepartures), []);
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
