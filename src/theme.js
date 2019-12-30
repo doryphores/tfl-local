@@ -1,3 +1,11 @@
+const badge = {
+  fontSize: 2,
+  fontWeight: 'badge',
+  px: 2,
+  py: 1,
+  borderRadius: '3px',
+};
+
 export default {
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fonts: {
@@ -21,18 +29,22 @@ export default {
   },
   badges: {
     bus: {
+      ...badge,
       background: '#ce312d',
       color: '#fff',
     },
     overground: {
+      ...badge,
       background: '#ef7800',
       color: '#fff',
     },
     southern: {
+      ...badge,
       background: '#003f2e',
       color: '#f2d600',
     },
     thameslink: {
+      ...badge,
       background: '#30104d',
       color: '#fff',
     },

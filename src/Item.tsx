@@ -24,18 +24,7 @@ const Item: React.FC<Props> = ({ variant, name, direction, time }) => (
       },
     }}
   >
-    <Badge
-      variant={variant}
-      sx={{
-        fontSize: 2,
-        fontWeight: 'badge',
-        px: 2,
-        py: 1,
-        borderRadius: '3px',
-      }}
-    >
-      {name}
-    </Badge>
+    <Badge variant={variant}>{name}</Badge>
     <span
       sx={{
         flex: 'auto',
