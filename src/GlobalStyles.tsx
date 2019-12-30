@@ -3,11 +3,11 @@ import { Global } from '@emotion/core';
 
 const GlobalStyles: React.FC = () => (
   <Global
-    styles={theme => ({
+    styles={(theme) => ({
       body: {
         padding: 0,
         margin: 0,
-      }
+      },
     })}
   />
 );

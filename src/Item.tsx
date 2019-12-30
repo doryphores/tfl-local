@@ -9,19 +9,21 @@ export interface Props {
   name: string;
   direction: string;
   time: Date;
-};
+}
 
 const Item: React.FC<Props> = ({ variant, name, direction, time }) => (
-  <li sx={{
-    display: 'flex',
-    '& + &': {
-      pt: 2,
-      mt: 2,
-      borderTopColor: 'muted',
-      borderTopStyle: 'solid',
-      borderTopWidth: '1px',
-    }
-  }}>
+  <li
+    sx={{
+      display: 'flex',
+      '& + &': {
+        pt: 2,
+        mt: 2,
+        borderTopColor: 'muted',
+        borderTopStyle: 'solid',
+        borderTopWidth: '1px',
+      },
+    }}
+  >
     <Badge
       variant={variant}
       sx={{
@@ -30,7 +32,8 @@ const Item: React.FC<Props> = ({ variant, name, direction, time }) => (
         px: 2,
         py: 1,
         borderRadius: '3px',
-      }}>
+      }}
+    >
       {name}
     </Badge>
     <span
@@ -38,10 +41,11 @@ const Item: React.FC<Props> = ({ variant, name, direction, time }) => (
         flex: 'auto',
         py: 1,
         px: 2,
-      }}>
+      }}
+    >
       {direction}
     </span>
-    <span sx={{py: 1}}>{formatDistance(time, new Date())}</span>
+    <span sx={{ py: 1 }}>{formatDistance(time, new Date())}</span>
   </li>
 );
 
