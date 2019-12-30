@@ -2,16 +2,16 @@
 import React from 'react';
 import { jsx } from 'theme-ui';
 import { Badge } from '@theme-ui/components';
-import { formatDistance } from 'date-fns';
+import { formatDistance, format } from 'date-fns';
 
 export interface Props {
-  variant: 'bus' | 'southern' | 'overground' | 'thameslink';
-  name: string;
+  mode: 'bus' | 'train';
+  line: string;
   direction: string;
   time: Date;
 }
 
-const Item: React.FC<Props> = ({ variant, name, direction, time }) => (
+const Item: React.FC<Props> = ({ mode, line, direction, time }) => (
   <li
     sx={{
       display: 'flex',
@@ -24,7 +24,7 @@ const Item: React.FC<Props> = ({ variant, name, direction, time }) => (
       },
     }}
   >
-    <Badge variant={variant}>{name}</Badge>
+    <Badge variant={mode === 'bus' ? 'bus' : line.toLowerCase()}>{line}</Badge>
     <span
       sx={{
         flex: 'auto',
@@ -34,7 +34,7 @@ const Item: React.FC<Props> = ({ variant, name, direction, time }) => (
     >
       {direction}
     </span>
-    <span sx={{ py: 1 }}>{formatDistance(time, new Date())}</span>
+    <span sx={{ py: 1, fontWeight: 'time' }}>{formatDistance(time, new Date())}</span>
   </li>
 );
 

@@ -17,6 +17,7 @@ export default {
     body: 400,
     heading: 500,
     badge: 600,
+    time: 600,
   },
   lineHeights: {
     body: 1.5,

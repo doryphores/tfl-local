@@ -7,15 +7,8 @@ import { Flex } from '@theme-ui/components';
 import { connect } from './socket';
 import theme from './theme';
 import GlobalStyles from './GlobalStyles';
-import Item, { Props as ItemProps } from './Item';
+import Item from './Item';
 import Section from './Section';
-
-interface Departure {
-  id: string;
-  line: string;
-  destination: string;
-  time: Date;
-}
 
 const App: React.FC = () => {
   const [departures, setDepartures] = useState({ bus: [], train: [] });
@@ -26,19 +19,13 @@ const App: React.FC = () => {
       <Styled.root>
         <Flex py={3} sx={{ minHeight: '100vh' }}>
           <Section title="Buses">
-            {departures.bus.map(({ line, destination, time, id }: Departure) => (
-              <Item key={id} variant="bus" name={line} direction={destination} time={new Date(time)} />
+            {departures.bus.map(({ line, destination, time, id }) => (
+              <Item key={id} mode="bus" line={line} direction={destination} time={new Date(time)} />
             ))}
           </Section>
           <Section title="Trains">
-            {departures.train.map(({ line, destination, time, id }: Departure) => (
-              <Item
-                key={id}
-                variant={line.toLowerCase() as ItemProps['variant']}
-                name={line}
-                direction={destination}
-                time={new Date(time)}
-              />
+            {departures.train.map(({ line, destination, time, id }) => (
+              <Item key={id} mode="train" line={line} direction={destination} time={new Date(time)} />
             ))}
           </Section>
         </Flex>
