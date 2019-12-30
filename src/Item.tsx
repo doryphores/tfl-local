@@ -2,12 +2,13 @@
 import React from 'react';
 import { jsx } from 'theme-ui';
 import { Badge } from '@theme-ui/components';
+import { formatDistance } from 'date-fns';
 
-interface Props {
+export interface Props {
   variant: 'bus' | 'southern' | 'overground' | 'thameslink';
   name: string;
   direction: string;
-  time: string;
+  time: Date;
 };
 
 const Item: React.FC<Props> = ({ variant, name, direction, time }) => (
@@ -40,7 +41,7 @@ const Item: React.FC<Props> = ({ variant, name, direction, time }) => (
       }}>
       {direction}
     </span>
-    <span sx={{py: 1}}>{time}</span>
+    <span sx={{py: 1}}>{formatDistance(time, new Date())}</span>
   </li>
 );
 

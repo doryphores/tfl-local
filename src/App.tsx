@@ -1,41 +1,56 @@
 /** @jsx jsx */
+import { useState, useEffect } from 'react';
 import { jsx, Styled } from 'theme-ui';
 import { ThemeProvider } from 'theme-ui';
 import { Flex } from '@theme-ui/components';
 
 import theme from './theme';
 import GlobalStyles from './GlobalStyles';
-import Item from './Item';
+import Item, { Props as ItemProps } from './Item';
 import Section from './Section';
 
-const App: React.FC = () => (
-  <ThemeProvider theme={theme}>
-    <GlobalStyles />
-    <Styled.root>
-      <Flex py={3} sx={{minHeight: '100vh'}}>
-        <Section title='Buses'>
-          <Item variant='bus'
-                name='197'
-                direction='Crystal Palace'
-                time='4 minutes' />
-        </Section>
-        <Section title='Trains'>
-          <Item variant='thameslink'
-                name='Thameslink'
-                direction='Bedford'
-                time='4 minutes' />
-          <Item variant='overground'
-                name='Overground'
-                direction='Highbury & Islington'
-                time='4 minutes' />
-          <Item variant='southern'
-                name='Southern'
-                direction='London Bridge'
-                time='10 minutes' />
-        </Section>
-      </Flex>
-    </Styled.root>
-  </ThemeProvider>
-);
+interface Departure {
+  id: string;
+  line: string;
+  destination: string;
+  time: Date;
+};
+
+const App: React.FC = () => {
+  const [departures, setDepartures] = useState({ bus: [], train: [] });
+  useEffect(() => {
+    const webSocket = new WebSocket('ws://localhost:8080');
+    webSocket.onmessage = (event) => {
+      setDepartures(JSON.parse(event.data));
+    }
+  }, []);
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Styled.root>
+        <Flex py={3} sx={{minHeight: '100vh'}}>
+          <Section title='Buses'>
+          {departures.bus.map(({ line, destination, time, id }: Departure) => (
+              <Item key={id}
+                variant='bus'
+                name={line}
+                direction={destination}
+                time={new Date(time)} />
+            ))}
+          </Section>
+          <Section title='Trains'>
+            {departures.train.map(({ line, destination, time, id }: Departure) => (
+              <Item key={id}
+                variant={line.toLowerCase() as ItemProps['variant']}
+                name={line}
+                direction={destination}
+                time={new Date(time)} />
+            ))}
+          </Section>
+        </Flex>
+      </Styled.root>
+    </ThemeProvider>
+  )
+};
 
 export default App;
