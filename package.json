@@ -28,7 +28,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "server": "forever -w --watchDirectory ./src/server src/server"
+    "server": "forever -w --watchDirectory ./server server"
   },
   "eslintConfig": {
     "extends": "react-app"

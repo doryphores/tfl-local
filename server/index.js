@@ -5,7 +5,7 @@ const wsServer = require('./ws');
 const { fetchTrainDepartures, fetchBusDepartures } = require('./api');
 const STOPS = require('./stops');
 
-const CACHE = {};
+const CACHE = { bus: [], train: [] };
 const DELAY = 10000;
 
 const server = httpServer.start();
