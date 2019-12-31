@@ -51,7 +51,8 @@ async function fetchTrainDepartures(stations) {
 
 async function fetchBusStopDepartures({ stop, minutesToStop }) {
   const response = await fetch(
-    `${TFL_API_URL}/StopPoint/${stop}/Arrivals?app_id=${TFL_APP_ID}&app_key=${TFL_APP_KEY}`,
+    `${TFL_API_URL}/StopPoint/${stop}/Arrivals` +
+      `?app_id=${TFL_APP_ID}&app_key=${TFL_APP_KEY}`,
   );
   const departures = await response.json();
   const now = new Date();

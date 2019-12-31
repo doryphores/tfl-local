@@ -1,4 +1,4 @@
-const SOCKET_URL = 'ws://localhost:8080';
+const SOCKET_URL = `ws://${window.location.hostname}:${process.env['REACT_APP_SERVER_PORT']}`;
 const RECONNECT_DELAY = 5000;
 
 let webSocket: WebSocket;
@@ -7,8 +7,6 @@ let timer: NodeJS.Timeout;
 export function connect(callback: (msg: any) => void): void {
   if (timer) clearTimeout(timer);
   console.debug('Connecting');
-
-  if (!SOCKET_URL) throw new Error('SOCKET_URL is undefined');
 
   webSocket = new WebSocket(SOCKET_URL);
 

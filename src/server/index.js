@@ -1,36 +1,34 @@
 require('dotenv').config();
 
-const WebSocket = require('ws');
+const httpServer = require('./httpServer');
+const wsServer = require('./ws');
 const { fetchTrainDepartures, fetchBusDepartures } = require('./api');
 const STOPS = require('./stops');
 
 const CACHE = {};
 const DELAY = 10000;
 
+const server = httpServer.start();
+wsServer.start(server, () => CACHE);
+
 async function updateStop(mode, stops) {
   let departures;
-  if (mode === 'bus') {
-    departures = await fetchBusDepartures(stops);
-  } else {
-    departures = await fetchTrainDepartures(stops);
-  }
-  CACHE[mode] = departures;
-  console.log('=> Updated', mode);
 
-  wss.clients.forEach((client) => {
-    if (client.readyState === WebSocket.OPEN) {
-      client.send(JSON.stringify(CACHE));
+  try {
+    if (mode === 'bus') {
+      departures = await fetchBusDepartures(stops);
+    } else {
+      departures = await fetchTrainDepartures(stops);
     }
-  });
 
-  setTimeout(() => updateStop(mode, stops), DELAY);
+    console.log('=> Updated', mode);
+    CACHE[mode] = departures;
+    wsServer.sendToAll(CACHE);
+  } finally {
+    setTimeout(() => updateStop(mode, stops), DELAY);
+  }
 }
 
-const wss = new WebSocket.Server({ port: 8080 });
-
-Object.entries(STOPS).forEach((entry) => updateStop(...entry));
-
-wss.on('connection', function connection(ws) {
-  ws.send(JSON.stringify(CACHE));
-  console.log('Connected!');
-});
+for (let [mode, stops] of Object.entries(STOPS)) {
+  updateStop(mode, stops);
+}
