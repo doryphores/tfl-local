@@ -1,5 +1,5 @@
 const badge = {
-  fontSize: 2,
+  fontSize: [1, 2],
   fontWeight: 'badge',
   px: 2,
   py: 1,
@@ -55,6 +55,7 @@ export default {
       fontFamily: 'body',
       lineHeight: 'body',
       fontWeight: 'body',
+      fontSize: [1, 2],
     },
   },
 };

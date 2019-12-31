@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React from 'react';
-import { jsx } from 'theme-ui';
+import { jsx, SxProps } from 'theme-ui';
 import { Badge } from '@theme-ui/components';
 import { formatDistance, format } from 'date-fns';
 
@@ -10,6 +10,12 @@ export interface Props {
   direction: string;
   time: Date;
 }
+
+const textOverflow: SxProps['sx'] = {
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+};
 
 const Item: React.FC<Props> = ({ mode, line, direction, time }) => (
   <li
@@ -24,17 +30,28 @@ const Item: React.FC<Props> = ({ mode, line, direction, time }) => (
       },
     }}
   >
-    <Badge variant={mode === 'bus' ? 'bus' : line.toLowerCase()}>{line}</Badge>
+    <Badge
+      sx={{ whiteSpace: 'nowrap' }}
+      variant={mode === 'bus' ? 'bus' : line.toLowerCase()}
+    >
+      {line}
+    </Badge>
     <span
       sx={{
-        flex: 'auto',
+        ...textOverflow,
+        flex: '1',
         py: 1,
         px: 2,
       }}
     >
       {direction}
     </span>
-    <span sx={{ py: 1, fontWeight: 'time' }}>{formatDistance(time, new Date())}</span>
+    <span
+      title={format(time, 'HH:mm')}
+      sx={{ py: 1, whiteSpace: 'nowrap', fontWeight: 'time' }}
+    >
+      {formatDistance(time, new Date())}
+    </span>
   </li>
 );
 

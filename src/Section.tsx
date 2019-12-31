@@ -13,9 +13,13 @@ const Section: React.FC<Props> = ({ title, children }) => (
       flex: '1',
       px: 3,
       '& + &': {
-        borderLeftStyle: 'solid',
-        borderLeftWidth: '1px',
-        borderLeftColor: 'muted',
+        borderStyle: 'solid',
+        borderWidth: 0,
+        borderLeftWidth: [0, '1px'],
+        borderTopWidth: ['1px', 0],
+        borderColor: 'muted',
+        mt: [4, 0],
+        pt: [3, 0],
       },
     }}
   >

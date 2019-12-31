@@ -17,15 +17,30 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Styled.root>
-        <Flex py={3} sx={{ minHeight: '100vh' }}>
+        <Flex
+          py={3}
+          sx={{ minHeight: '100vh', flexDirection: ['column', 'row'] }}
+        >
           <Section title="Buses">
             {departures.bus.map(({ line, destination, time, id }) => (
-              <Item key={id} mode="bus" line={line} direction={destination} time={new Date(time)} />
+              <Item
+                key={id}
+                mode="bus"
+                line={line}
+                direction={destination}
+                time={new Date(time)}
+              />
             ))}
           </Section>
           <Section title="Trains">
             {departures.train.map(({ line, destination, time, id }) => (
-              <Item key={id} mode="train" line={line} direction={destination} time={new Date(time)} />
+              <Item
+                key={id}
+                mode="train"
+                line={line}
+                direction={destination}
+                time={new Date(time)}
+              />
             ))}
           </Section>
         </Flex>
