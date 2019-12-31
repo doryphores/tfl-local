@@ -1,5 +1,6 @@
 {
-  "name": "tfl",
+  "name": "tfl-local",
+  "description": "Local TFL departure boards",
   "version": "0.1.0",
   "license": "MIT",
   "dependencies": {

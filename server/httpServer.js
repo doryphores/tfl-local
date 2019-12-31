@@ -11,7 +11,7 @@ app.get('/', function(_req, res) {
 });
 
 function start() {
-  return app.listen(process.env['PORT']);
+  return app.listen(process.env['SERVER_PORT']);
 }
 
 module.exports = { start };
