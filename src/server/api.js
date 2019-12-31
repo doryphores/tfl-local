@@ -30,35 +30,39 @@ function fetchTrainStationDepartures({ station, minutesToStation }) {
 
       resolve(
         trainServices
-          .map((r) => ({
+          .map(r => ({
             id: r['serviceId'],
             line: r['operator'].replace(/^London /, ''),
             destination: r['destination']['name'],
             time: timeFromRailDeparture(r),
           }))
-          .filter((d) => differenceInMinutes(d.time, now) >= minutesToStation),
+          .filter(d => differenceInMinutes(d.time, now) >= minutesToStation),
       );
     });
   });
 }
 
 async function fetchTrainDepartures(stations) {
-  const departures = await Promise.all(stations.map(fetchTrainStationDepartures));
+  const departures = await Promise.all(
+    stations.map(fetchTrainStationDepartures),
+  );
   return concatAndSort(departures);
 }
 
 async function fetchBusStopDepartures({ stop, minutesToStop }) {
-  const response = await fetch(`${TFL_API_URL}/StopPoint/${stop}/Arrivals?app_id=${TFL_APP_ID}&app_key=${TFL_APP_KEY}`);
+  const response = await fetch(
+    `${TFL_API_URL}/StopPoint/${stop}/Arrivals?app_id=${TFL_APP_ID}&app_key=${TFL_APP_KEY}`,
+  );
   const departures = await response.json();
   const now = new Date();
   return departures
-    .map((d) => ({
+    .map(d => ({
       id: d['id'],
       line: d['lineName'],
       destination: `${d['towards']} ➤ ${d['destinationName']}`,
       time: new Date(d['expectedArrival']),
     }))
-    .filter((d) => differenceInMinutes(d.time, now) >= minutesToStop);
+    .filter(d => differenceInMinutes(d.time, now) >= minutesToStop);
 }
 
 async function fetchBusDepartures(stops) {
