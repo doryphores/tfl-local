@@ -1,14 +1,12 @@
 /** @jsx jsx */
 import { useState, useEffect } from 'react';
-import { jsx, Styled } from 'theme-ui';
-import { ThemeProvider } from 'theme-ui';
+import { jsx, Styled, ThemeProvider } from 'theme-ui';
 import { Flex } from '@theme-ui/components';
 
 import { connect } from './socket';
 import theme from './theme';
 import GlobalStyles from './GlobalStyles';
-import Item from './Item';
-import Section from './Section';
+import DepartureBoard from './DepartureBoard';
 
 const App: React.FC = () => {
   const [departures, setDepartures] = useState({ bus: [], train: [] });
@@ -18,31 +16,18 @@ const App: React.FC = () => {
       <GlobalStyles />
       <Styled.root>
         <Flex
-          py={3}
-          sx={{ minHeight: '100vh', flexDirection: ['column', 'row'] }}
+          sx={{ py: 3, minHeight: '100vh', flexDirection: ['column', 'row'] }}
         >
-          <Section title="Buses">
-            {departures.bus.map(({ line, destination, time, id }) => (
-              <Item
-                key={id}
-                mode="bus"
-                line={line}
-                direction={destination}
-                time={new Date(time)}
-              />
-            ))}
-          </Section>
-          <Section title="Trains">
-            {departures.train.map(({ line, destination, time, id }) => (
-              <Item
-                key={id}
-                mode="train"
-                line={line}
-                direction={destination}
-                time={new Date(time)}
-              />
-            ))}
-          </Section>
+          <DepartureBoard
+            mode="bus"
+            title="Buses"
+            departures={departures.bus}
+          />
+          <DepartureBoard
+            mode="train"
+            title="Trains"
+            departures={departures.train}
+          />
         </Flex>
       </Styled.root>
     </ThemeProvider>

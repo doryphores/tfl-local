@@ -17,7 +17,7 @@ const textOverflow: SxProps['sx'] = {
   whiteSpace: 'nowrap',
 };
 
-const Item: React.FC<Props> = ({ mode, line, direction, time }) => (
+const DepartureItem: React.FC<Props> = ({ mode, line, direction, time }) => (
   <li
     sx={{
       display: 'flex',
@@ -55,4 +55,4 @@ const Item: React.FC<Props> = ({ mode, line, direction, time }) => (
   </li>
 );
 
-export default Item;
+export default DepartureItem;
