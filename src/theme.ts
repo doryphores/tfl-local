@@ -1,5 +1,5 @@
 const badge = {
-  fontSize: [1, 2],
+  fontSize: [1, 2, 3],
   fontWeight: 'badge',
   px: 2,
   py: 1,
@@ -7,6 +7,7 @@ const badge = {
 };
 
 export default {
+  breakpoints: ['768px', '1280px'],
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fonts: {
     body: '"Avenir Next", Helvetica, Arial, sans-serif',
@@ -55,7 +56,7 @@ export default {
       fontFamily: 'body',
       lineHeight: 'body',
       fontWeight: 'body',
-      fontSize: [1, 2],
+      fontSize: [1, 2, 3],
     },
   },
 };
