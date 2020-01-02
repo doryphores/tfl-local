@@ -34,7 +34,7 @@ function fetchTrainStationDepartures({ station, minutesToStation }) {
           .map(r => ({
             id: r['serviceId'],
             line: r['operator'].replace(/^London /, ''),
-            destination: r['destination']['name'],
+            destination: `${r['std']} to ${r['destination']['name']}`,
             time: timeFromRailDeparture(r),
           }))
           .filter(d => differenceInMinutes(d.time, now) >= minutesToStation),
