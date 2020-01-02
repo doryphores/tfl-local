@@ -25,8 +25,9 @@ function concatAndSort(departures) {
 function fetchTrainStationDepartures({ station, minutesToStation }) {
   const now = new Date();
   return new Promise((resolve, reject) => {
-    railAPI.getDepartureBoard(station, {}, (err, { trainServices }) => {
+    railAPI.getDepartureBoard(station, {}, (err, result) => {
       if (err) return reject(err);
+      const { trainServices } = result;
 
       resolve(
         trainServices
