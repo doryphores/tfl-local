@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import React from 'react';
 import { jsx, SxProps } from 'theme-ui';
 import { Badge } from '@theme-ui/components';
 import { formatDistance, format } from 'date-fns';
