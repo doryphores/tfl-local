@@ -7,6 +7,7 @@ const badge = {
 };
 
 export default {
+  useColorSchemeMediaQuery: true,
   breakpoints: ['768px', '1280px'],
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fonts: {
@@ -28,6 +29,13 @@ export default {
     text: '#000',
     background: '#fff',
     muted: '#ccc',
+    modes: {
+      dark: {
+        text: '#fff',
+        background: '#111',
+        muted: '#555',
+      },
+    },
   },
   badges: {
     bus: {

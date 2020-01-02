@@ -1,11 +1,10 @@
 /** @jsx jsx */
 import { useState, useEffect } from 'react';
-import { jsx, Styled, ThemeProvider } from 'theme-ui';
+import { jsx, Styled, ThemeProvider, ColorMode } from 'theme-ui';
 import { Flex } from '@theme-ui/components';
 
 import { connect } from './socket';
 import theme from './theme';
-import GlobalStyles from './GlobalStyles';
 import DepartureBoard from './DepartureBoard';
 
 const App: React.FC = () => {
@@ -13,10 +12,18 @@ const App: React.FC = () => {
   useEffect(() => connect(setDepartures), []);
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyles />
+      <ColorMode />
       <Styled.root>
         <Flex
-          sx={{ py: 3, minHeight: '100vh', flexDirection: ['column', 'row'] }}
+          sx={{
+            py: 3,
+            minHeight: '100vh',
+            width: '100vw',
+            flexDirection: ['column', 'row'],
+            position: 'absolute',
+            top: 0,
+            left: 0,
+          }}
         >
           <DepartureBoard
             mode="bus"
