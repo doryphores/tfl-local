@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { useState, useEffect } from 'react';
 import { jsx, Styled, ThemeProvider, ColorMode } from 'theme-ui';
-import { Flex } from '@theme-ui/components';
 
 import { connect } from './socket';
 import theme from './theme';
+import Layout from './Layout';
 import DepartureBoard from './DepartureBoard';
 
 const App: React.FC = () => {
@@ -14,17 +14,7 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <ColorMode />
       <Styled.root>
-        <Flex
-          sx={{
-            py: 3,
-            minHeight: '100vh',
-            width: '100vw',
-            flexDirection: ['column', 'row'],
-            position: 'absolute',
-            top: 0,
-            left: 0,
-          }}
-        >
+        <Layout>
           <DepartureBoard
             mode="bus"
             title="Buses"
@@ -35,7 +25,7 @@ const App: React.FC = () => {
             title="Trains"
             departures={departures.train}
           />
-        </Flex>
+        </Layout>
       </Styled.root>
     </ThemeProvider>
   );
