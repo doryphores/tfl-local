@@ -12,9 +12,9 @@ const server = httpServer.start();
 wsServer.start(server, () => CACHE);
 
 async function updateStop(mode, stops) {
-  let departures;
-
   try {
+    let departures;
+
     if (mode === 'bus') {
       departures = await fetchBusDepartures(stops);
     } else {
@@ -29,6 +29,4 @@ async function updateStop(mode, stops) {
   }
 }
 
-for (let [mode, stops] of Object.entries(STOPS)) {
-  updateStop(mode, stops);
-}
+Object.entries(STOPS).forEach(([mode, stops]) => updateStop(mode, stops));
