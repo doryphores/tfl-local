@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-const assetPath = path.join(__dirname, '../../build');
+const assetPath = path.join(__dirname, '../build');
 
 app.use(express.static(assetPath));
 
