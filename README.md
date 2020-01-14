@@ -4,12 +4,10 @@ Your local TFL departure boards for easy access in your home.
 
 ## Install and run for development
 
-Requires [`yarn`](https://yarnpkg.com/).
-
 Install dependencies:
 
 ```
-> yarn install
+> npm install
 ```
 
 [Register with National Rail API](http://realtime.nationalrail.co.uk/OpenLDBWSRegistration) (Darwin) to get a token.
@@ -21,11 +19,11 @@ Create a local `.env` file based on [the provided template](./.env.template).
 Start the UI:
 
 ```
-> yarn start
+> npm start
 ```
 
 Start the server:
 
 ```
-> yarn server
+> npm server
 ```
