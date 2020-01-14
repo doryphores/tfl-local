@@ -7,7 +7,6 @@ const badge = {
 };
 
 export default {
-  useColorSchemeMediaQuery: true,
   breakpoints: ['768px', '1280px'],
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fonts: {
@@ -25,15 +24,16 @@ export default {
     body: 1.5,
     heading: 1.125,
   },
+  initialColorModeName: 'dark',
   colors: {
-    text: '#000',
-    background: '#fff',
-    muted: '#ccc',
+    text: '#fff',
+    background: '#111',
+    muted: '#555',
     modes: {
-      dark: {
-        text: '#fff',
-        background: '#111',
-        muted: '#555',
+      light: {
+        text: '#000',
+        background: '#fff',
+        muted: '#ccc',
       },
     },
   },
