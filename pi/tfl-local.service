@@ -1,0 +1,13 @@
+[Unit]
+Description=TFL Local
+After=network.target
+
+[Service]
+WorkingDirectory=/home/pi/tfl-local
+ExecStart=/usr/bin/npm server
+Restart=on-failure
+User=pi
+EnvironmentFile=/home/pi/tfl-local/.en
+
+[Install]
+WantedBy=multi-user.target
