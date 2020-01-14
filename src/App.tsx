@@ -6,6 +6,7 @@ import { connect } from './socket';
 import theme from './theme';
 import Layout from './Layout';
 import DepartureBoard from './DepartureBoard';
+import Clock from './Clock';
 
 const App: React.FC = () => {
   const [departures, setDepartures] = useState({ bus: [], train: [] });
@@ -15,6 +16,7 @@ const App: React.FC = () => {
       <ColorMode />
       <Styled.root>
         <Layout>
+          <Clock />
           <DepartureBoard
             mode="bus"
             title="Buses"

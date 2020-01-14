@@ -30,6 +30,9 @@ const DepartureBoard: React.FC<Props> = ({ mode, title, departures }) => (
         mt: [4, 0],
         pt: [3, 0],
       },
+      '& + & h1': {
+        textAlign: 'right'
+      },
     }}
   >
     <h1 sx={{ mt: 0, mb: 3, fontWeight: 'heading' }}>{title}</h1>
