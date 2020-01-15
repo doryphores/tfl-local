@@ -7,7 +7,6 @@ WorkingDirectory=/home/pi/tfl-local
 ExecStart=/usr/local/bin/node server
 Restart=on-failure
 User=pi
-EnvironmentFile=/home/pi/tfl-local/.env
 
 [Install]
 WantedBy=multi-user.target
