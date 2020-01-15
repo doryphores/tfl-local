@@ -12,7 +12,8 @@ const Clock: React.FC = () => {
   return (
     <div
       sx={{
-        // pointerEvents: 'none',
+        display: ['none', 'block'],
+        pointerEvents: 'none',
         position: 'absolute',
         top: 0,
         width: '100vw',
@@ -31,6 +32,7 @@ const Clock: React.FC = () => {
           borderColor: 'muted',
           borderStyle: 'solid',
           borderTop: 'none',
+          borderRadius: '0 0 2px 2px',
         }}
       >
         {format(now, 'HH:mm:ss')}

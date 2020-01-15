@@ -19,7 +19,7 @@ interface Props {
 const DepartureBoard: React.FC<Props> = ({ mode, title, departures }) => (
   <Box
     sx={{
-      flex: '1',
+      flex: ['0', '1'],
       px: 3,
       '& + &': {
         borderStyle: 'solid',
@@ -29,9 +29,10 @@ const DepartureBoard: React.FC<Props> = ({ mode, title, departures }) => (
         borderColor: 'muted',
         mt: [4, 0],
         pt: [3, 0],
+        pb: [0, 3],
       },
       '& + & h1': {
-        textAlign: 'right'
+        textAlign: ['left', 'right'],
       },
     }}
   >

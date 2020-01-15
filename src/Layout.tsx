@@ -5,7 +5,8 @@ import { Flex } from '@theme-ui/components';
 const Layout: React.FC = ({ children }) => (
   <Flex
     sx={{
-      py: 3,
+      pt: 3,
+      pb: [3, 0],
       minHeight: '100vh',
       width: '100vw',
       flexDirection: ['column', 'row'],
