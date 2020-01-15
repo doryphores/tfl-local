@@ -17,9 +17,9 @@
     "date-fns": "^2.8.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "forever": "^1.0.0",
     "national-rail-darwin": "^1.0.8",
     "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -31,7 +31,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "server": "forever -w --watchDirectory ./server server"
+    "server": "nodemon --watch ./server server"
   },
   "eslintConfig": {
     "extends": "react-app"
