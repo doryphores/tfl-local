@@ -25,5 +25,5 @@ Start the UI:
 Start the server:
 
 ```
-> npm server
+> npm run server
 ```
