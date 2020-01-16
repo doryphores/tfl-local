@@ -1,13 +1,35 @@
 #!/usr/bin/env sh
 
-ssh pi@
+set -e
 
-# remote => git pull
+USER=$1
+HOST=$2
+APP_PATH=/home/pi/tfl-local
 
-# remote => npm install --production
+rm -rf {dist,build}
 
-# local => npm run build
+mkdir -p dist/node_modules
 
-# scp => build
+echo '-> Building app'
 
-# remote => sudo systemctl restart tfl-local
+npm run build
+
+mv build dist/
+
+cp -r {package.json,package-lock.json,server,.env} dist
+
+echo '-> Preparing dependencies'
+
+npm install --no-progress --silent --production --prefix ./dist
+
+echo '-> Syncing files'
+
+rsync -azhe ssh --delete dist/ $USER@$HOST:$APP_PATH
+
+echo '-> Restarting app'
+
+ssh $USER@$HOST 'sudo systemctl restart tfl-local'
+
+echo '-> Cleaning up'
+
+rm -rf {dist,build}
