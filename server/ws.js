@@ -1,4 +1,6 @@
 const WebSocket = require('ws');
+const logger = require('./logger');
+
 const CLEANUP_INTERVAL = 30 * 1000; // 30 seconds
 
 let server;
@@ -10,12 +12,16 @@ function start(httpServer, fetchData) {
     client.isAlive = true;
     client.on('pong', () => (client.isAlive = true));
     client.send(JSON.stringify(fetchData()));
-    console.log('Connected!');
+    console.log(client);
+    logger.debug('Web socket client connected');
   });
 
   setInterval(() => {
     server.clients.forEach(client => {
-      if (!client.isAlive) return client.terminate();
+      if (!client.isAlive) {
+        logger.debug('Cleaning up disconnected client');
+        client.terminate();
+      }
 
       client.isAlive = false;
       client.ping();
