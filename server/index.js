@@ -8,7 +8,7 @@ const logger = require('./logger');
 
 const BUILD_NUMBER = process.env['BUILD_NUMBER'] || 'DEV';
 const CACHE = { bus: [], train: [] };
-const DELAY = 10000;
+const DELAY = 20000;
 
 const server = httpServer.start();
 wsServer.start(server, () => CACHE);
