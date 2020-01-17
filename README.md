@@ -29,9 +29,11 @@ Start the server:
 ```
 
 **Note**: The server prefixes all logs with message priorities compatible with `systemd`. e.g.:
+
 ```
 <7>Web socket client connected
 ```
+
 (the `7` means `debug`)
 
 ## Deploy the server to a raspberry pi
@@ -43,6 +45,7 @@ Raspberry pi pre-requisites:
 - `node` >= 10
 
 **Note**: The deploy script assumes that the server will be installed to the default user's home folder:
+
 ```
 /home/pi/tfl-local
 ```
@@ -52,7 +55,18 @@ To install as a systemd service:
 ```
 > sudo cp pi/tfl-local.service /etc/systemd/system
 > sudo systemd enable tfl-local
-> sudo systemd start tfl-local
+```
+
+To deploy:
+
+```
+> bin/deploy [user] [host]
+```
+
+For example:
+
+```
+> bin/deploy pi 192.168.0.12
 ```
 
 To check the server status:
