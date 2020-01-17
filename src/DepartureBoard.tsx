@@ -21,6 +21,7 @@ const DepartureBoard: React.FC<Props> = ({ mode, title, departures }) => (
     sx={{
       flex: ['0', '1'],
       px: 3,
+      pb: [0, 3],
       '& + &': {
         borderStyle: 'solid',
         borderWidth: 0,
@@ -29,7 +30,6 @@ const DepartureBoard: React.FC<Props> = ({ mode, title, departures }) => (
         borderColor: 'muted',
         mt: [4, 0],
         pt: [3, 0],
-        pb: [0, 3],
       },
       '& + & h1': {
         textAlign: ['left', 'right'],
