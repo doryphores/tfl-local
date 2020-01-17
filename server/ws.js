@@ -12,7 +12,6 @@ function start(httpServer, fetchData) {
     client.isAlive = true;
     client.on('pong', () => (client.isAlive = true));
     client.send(JSON.stringify(fetchData()));
-    console.log(client);
     logger.debug('Web socket client connected');
   });
 
