@@ -33,14 +33,19 @@ interface Props {
   status: Status;
 }
 
+function shouldRender(status: Status) {
+  return status !== 'connected';
+}
+
 const ConnectionStatus: React.FC<Props> = ({ status }: Props) => {
-  const [render, setRender] = useState(status !== 'connected');
+  const [render, setRender] = useState(shouldRender(status));
+
   useEffect(() => {
-    if (status !== 'connected') setRender(true);
+    if (shouldRender(status)) setRender(true);
   }, [status]);
 
   const onAnimationEnd = useCallback(() => {
-    if (status === 'connected') setRender(false);
+    if (!shouldRender(status)) setRender(false);
   }, [status]);
 
   if (!render) return null;
@@ -53,7 +58,7 @@ const ConnectionStatus: React.FC<Props> = ({ status }: Props) => {
         left: '50%',
         py: 2,
         px: 3,
-        fontSize: 4,
+        fontSize: [3, 4],
         bg: 'muted',
         borderBottomLeftRadius: 2,
         borderBottomRightRadius: 2,
