@@ -2,13 +2,7 @@
 import { jsx, Box } from 'theme-ui';
 
 import DepartureItem from './DepartureItem';
-
-interface Departure {
-  id: string;
-  line: string;
-  destination: string;
-  time: Date;
-}
+import { Departure } from './socket';
 
 interface Props {
   mode: 'bus' | 'train';

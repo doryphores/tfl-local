@@ -2,6 +2,18 @@ import EventEmitter from 'events';
 
 export type Status = 'connected' | 'connecting' | 'disconnected';
 
+export interface Departure {
+  id: string;
+  line: string;
+  destination: string;
+  time: Date;
+}
+
+export interface Departures {
+  bus: Departure[];
+  train: Departure[];
+}
+
 const SOCKET_URL = `ws://${window.location.hostname}:${process.env['REACT_APP_SERVER_PORT']}`;
 const RECONNECT_DELAY = 5000;
 

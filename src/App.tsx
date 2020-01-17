@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { jsx, Styled, ThemeProvider, ColorMode } from 'theme-ui';
 
-import { connect, Status } from './socket';
+import { connect, Status, Departures } from './socket';
 import theme from './theme';
 import Layout from './Layout';
 import DepartureBoard from './DepartureBoard';
@@ -10,9 +10,13 @@ import Clock from './Clock';
 import ConnectionStatus from './ConnectionStatus';
 
 let currentBuildNumber: string = '';
+let initialState = {
+  bus: [],
+  train: [],
+};
 
 const App: React.FC = () => {
-  const [departures, setDepartures] = useState({ bus: [], train: [] });
+  const [departures, setDepartures] = useState<Departures>(initialState);
   const [connectionStatus, setConnectionStatus] = useState<Status>(
     'connecting',
   );
