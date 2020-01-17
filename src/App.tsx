@@ -8,9 +8,20 @@ import Layout from './Layout';
 import DepartureBoard from './DepartureBoard';
 import Clock from './Clock';
 
+let currentBuildNumber: string = '';
+
 const App: React.FC = () => {
   const [departures, setDepartures] = useState({ bus: [], train: [] });
-  useEffect(() => connect(setDepartures), []);
+  useEffect(() => {
+    connect(({ buildNumber, departureData }) => {
+      if (currentBuildNumber && currentBuildNumber !== buildNumber) {
+        window.location.reload(true);
+        return;
+      }
+      currentBuildNumber = buildNumber;
+      setDepartures(departureData);
+    });
+  }, []);
   return (
     <ThemeProvider theme={theme}>
       <ColorMode />
