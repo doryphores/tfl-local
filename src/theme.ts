@@ -3,7 +3,7 @@ const badge = {
   fontWeight: 'badge',
   px: 2,
   py: 1,
-  borderRadius: '3px',
+  borderRadius: 1,
 };
 
 export default {
@@ -14,6 +14,7 @@ export default {
     heading: '"Avenir Next", Helvetica, Arial, sans-serif',
   },
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
+  radii: [3, 6, 9],
   fontWeights: {
     body: 400,
     heading: 500,
