@@ -13,7 +13,8 @@ let currentBuildNumber: string = '';
 const App: React.FC = () => {
   const [departures, setDepartures] = useState({ bus: [], train: [] });
   useEffect(() => {
-    connect(({ buildNumber, departureData }) => {
+    const socket = connect();
+    socket.on('message', ({ buildNumber, departureData }) => {
       if (currentBuildNumber && currentBuildNumber !== buildNumber) {
         window.location.reload(true);
         return;

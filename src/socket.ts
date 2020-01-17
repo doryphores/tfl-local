@@ -1,10 +1,16 @@
+import EventEmitter from 'events';
+
+export type Status = 'connected' | 'connecting' | 'disconnected';
+
 const SOCKET_URL = `ws://${window.location.hostname}:${process.env['REACT_APP_SERVER_PORT']}`;
 const RECONNECT_DELAY = 5000;
 
 let webSocket: WebSocket;
 let reconnectionTimeout: NodeJS.Timeout;
 
-export function connect(callback: (msg: any) => void): void {
+const emitter = new EventEmitter();
+
+export function connect(): EventEmitter {
   if (reconnectionTimeout) clearTimeout(reconnectionTimeout);
   console.debug('Connecting to web socket');
 
@@ -14,19 +20,25 @@ export function connect(callback: (msg: any) => void): void {
 
   webSocket = new WebSocket(SOCKET_URL);
 
+  emitter.emit('status', 'connecting');
+
   webSocket.addEventListener('open', () => {
     clearTimeout(connectionTimeout);
     console.debug('Web socket connected');
+    emitter.emit('status', 'connected');
   });
 
   webSocket.addEventListener('message', (event: MessageEvent): void => {
     console.debug('Message received');
-    callback(JSON.parse(event.data));
+    emitter.emit('message', JSON.parse(event.data));
   });
 
   webSocket.addEventListener('close', (event: CloseEvent): void => {
     console.debug('Web socket disconnected');
+    emitter.emit('status', 'disconnected');
     if (webSocket.readyState < 2) webSocket.close();
-    reconnectionTimeout = setTimeout(() => connect(callback), RECONNECT_DELAY);
+    reconnectionTimeout = setTimeout(connect, RECONNECT_DELAY);
   });
+
+  return emitter;
 }
