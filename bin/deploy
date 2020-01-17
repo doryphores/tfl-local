@@ -18,6 +18,8 @@ mv build dist/
 
 cp -r {package.json,package-lock.json,server,.env} dist
 
+echo "BUILD_NUMBER=$(ls dist/build/pre* | cut -d'.' -f2)" >> dist/.env
+
 echo '-> Preparing dependencies'
 
 npm install --no-progress --silent --production --prefix ./dist
