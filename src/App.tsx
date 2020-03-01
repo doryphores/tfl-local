@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { useState, useEffect } from 'react';
-import { jsx, Styled, ThemeProvider, ColorMode } from 'theme-ui';
+import { jsx, Styled, ThemeProvider, InitializeColorMode } from 'theme-ui';
 
 import { connect, Status, Departures } from './socket';
 import theme from './theme';
@@ -23,7 +23,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const socket = connect();
     socket.on('status', (status: Status) => setConnectionStatus(status));
-    socket.on('message', ({ buildNumber, departureData }) => {
+    socket.on('message', ({ buildNumber, departureData }: any) => {
       if (currentBuildNumber && currentBuildNumber !== buildNumber) {
         window.location.reload(true);
         return;
@@ -34,7 +34,7 @@ const App: React.FC = () => {
   }, []);
   return (
     <ThemeProvider theme={theme}>
-      <ColorMode />
+      <InitializeColorMode />
       <Styled.root>
         <Layout>
           <Clock />
